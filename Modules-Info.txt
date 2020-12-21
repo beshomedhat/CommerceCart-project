@@ -1,0 +1,16 @@
+----------------------------------------------------------- VERSION 1 ---------------------------------------------
+1)Customer : id, name, email, phone, address, status
+           => login, register, updateInfo, deleteAccount
+
+------------------------------------------------------------
+2)Product : id, name, Quantity, cat, address
+           => addProduct, updateProduct, deleteProduct
+
+------------------------------------------------------------
+3)Order : id, name, date, status, FK:customerId, FK:[{ productId, Quantity }]
+           => makeOrder(byCustomer), updateOrder(byCustomer), deleteOrder(byCustomer)
+
+------------------------------------------------------------
+customer <-----> order
+product  <-----> order
+------------------------------------------------------------
