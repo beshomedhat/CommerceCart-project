@@ -3,7 +3,7 @@
            => login, register, updateInfo, deleteAccount
 
 ------------------------------------------------------------
-2)Product : id, name, Quantity, cat, address
+2)Product : id, name, Quantity, cat
            => addProduct, updateProduct, deleteProduct
 
 ------------------------------------------------------------
