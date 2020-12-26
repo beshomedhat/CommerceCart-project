@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken')
-const Customer = require('../models/customer')
+const Admin = require('../models/admin')
 
-const auth = async(req,res,next)=>{
+const authAdmin = async(req,res,next)=>{
     try{
         const token = req.header("Auth").replace("Bearer ","")
         const decodedToken = jwt.verify(token,"AaAaBbBb")
-        const data = await Customer.findOne({
+        const data = await Admin.findOne({
             _id: decodedToken._id, 
             'tokens.token':token
         })
@@ -18,11 +18,10 @@ const auth = async(req,res,next)=>{
         res.status(500).send({
             status:0,
             data:"",
-            msg:"auth err"
+            msg:"auth admin err"
         })
     }
     
 }
 
-
-module.exports = auth;
+module.exports = authAdmin;
