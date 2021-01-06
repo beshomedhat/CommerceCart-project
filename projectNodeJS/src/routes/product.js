@@ -1,6 +1,8 @@
 const Product = require('../models/product')
 const express = require('express')
 const authAdmin = require('../middleware/adminAuthor')
+const multer = require('multer')
+const path = require("path");
 const router = new express.Router()
 
 //-------------- add product ------------------------
@@ -16,7 +18,7 @@ router.post('/addProduct',authAdmin,async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data"
@@ -38,7 +40,7 @@ router.get('/allProducts',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data"
@@ -56,7 +58,7 @@ router.patch('/product/:id',authAdmin, async(req,res)=>{
     const allowedUpdates = ["name","quantity","category","price"]
     const validUpdates = updatesKeys.every((u)=>allowedUpdates.includes(u))
     if(!validUpdates)
-        res.status(400).send({
+        res.status(200).send({
             status:4,
             data:'',
             msg:'invalid updates'
@@ -80,7 +82,7 @@ router.patch('/product/:id',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             statue: 0,
             data:'',
             msg:"error edit data"
@@ -107,7 +109,7 @@ router.delete('/product/:id',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             statue: 0,
             data:'',
             msg:"error delete data"
@@ -135,7 +137,7 @@ router.get('/product/:id',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data"
@@ -158,7 +160,7 @@ router.get('/allProductCat',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data"
@@ -167,6 +169,54 @@ router.get('/allProductCat',async (req,res)=>{
     }
 
 })
+
+//------------------upload img----------------------
+let uniqueSuffix
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images')
+    },
+    filename: function (req, file, cb) {
+    uniqueSuffix = Date.now() + file.originalname.match(/\.(jpg|png|PNG|JPG)$/)[0]
+      cb(null, uniqueSuffix)
+    }
+  })
+  
+  var upload = multer({ storage: storage })    
+router.post('/product/:id/uploadImg',authAdmin, upload.single('upload'), async(req,res)=>{
+
+    try{
+        const _id = req.params.id
+        const data = await Product.findById(_id)
+        if(!data){
+            res.status(200).send({
+                status:2,
+                data: data,
+                msg:"not found"
+            })
+        }
+        data['image']= `images/${uniqueSuffix}`
+        await data.save()
+        res.status(200).send({
+            status:1,
+            data: data,
+            msg:"task found"
+        })
+    }
+    catch(e){
+        res.status(200).send({
+            status:0,
+            data: e,
+            msg:"error data"
+        })
+
+    }
+})
+
+router.get("/:imgname", (req, res) => {
+    const _id = req.params.imgname
+    res.sendFile(path.join(__dirname, "../../images/"+_id));
+  });
 
 module.exports = router
 

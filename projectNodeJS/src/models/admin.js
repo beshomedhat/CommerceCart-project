@@ -72,30 +72,6 @@ adminSchema.methods.generateToken = async function(){
     return token
 }
 
-//-------------------------------to remove token when logout----------------------------
-adminSchema.methods.removeToken = async function(token){
-    
-    let tokens = this.tokens;
-    for(let i=0; i<tokens.length; i++){
-        if(tokens[i].token === token){
-            this.tokens.splice(i,1)
-            await this.save()
-            return true
-        }
-    }
-    
-    return false;
-}
-
-//-----------------------------------to remove all tokens when logout from all------------------------
-adminSchema.methods.removeAllToken = async function(token){
-    
-    this.tokens = [];
-    await this.save()
-    return true
-}
-
-
 const Admin = mongoose.model('Admin',adminSchema)
 
 module.exports = Admin;

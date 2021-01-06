@@ -1,0 +1,30 @@
+<section class="container p-5">
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Img</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="oneProduct" *ngFor="let product of products; let i=index" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{product.name}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(product._id)"><i class="fa fa-trash-alt"></i></button>
+          <button class="btn btn-success mx-2" routerLink="../product/{{product._id}}/edit"><i class="fa fa-edit"></i></button>
+          <button class="btn btn-primary" routerLink="../product/{{product._id}}"><i class="fa fa-eye"></i></button>
+        </td>
+        <td><img class="img-fluid productImg" src="http://localhost:3000/{{product.image.replace('images/','')}}" alt=""></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

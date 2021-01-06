@@ -18,7 +18,7 @@ router.post('/registerAdmin',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data",
@@ -41,7 +41,7 @@ router.get('/allAdmins',authAdmin,async (req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data: e,
             msg:"error data"
@@ -61,7 +61,7 @@ router.patch('/editAdminInfo',authAdmin, async(req,res)=>{
     const allowedUpdates = ["name","email","pass"]
     const validUpdates = updatesKeys.every((u)=>allowedUpdates.includes(u))
     if(!validUpdates)
-        res.status(400).send({
+        res.status(200).send({
             status:4,
             data:'',
             msg:'invalid updates'
@@ -86,7 +86,7 @@ router.patch('/editAdminInfo',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             statue: 0,
             data:"",
             msg:"error edit data"
@@ -113,7 +113,7 @@ router.delete('/deleteAdminAccount',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             statue: 0,
             data:'',
             msg:"error delete data"
@@ -134,7 +134,7 @@ router.post('/adminLogin', async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data:"",
             msg:"err in data",
@@ -154,7 +154,7 @@ router.get('/adminProfile', authAdmin,async(req,res)=>{
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
             status:0,
             data:"",
             msg:"err in data"
@@ -162,50 +162,64 @@ router.get('/adminProfile', authAdmin,async(req,res)=>{
     }
 })
 
-//-------------------logout---------------------------------
-router.post('/adminLogout',authAdmin, async(req,res)=>{
+//-----------logOut--------------------------------------
+router.post('/adminLogout', authAdmin, async(req, res)=>{
     try{
-        const _id= req.data._id
-        const admin = await Admin.findOne(_id);
-        let check= admin.removeToken(req.token)
-        if(!check){throw new Error('')}
-        res.send({
+        req.data.tokens = req.data.tokens.filter( token =>{
+            return token.token != req.token
+        })
+        await req.data.save()
+        res.status(200).send({
             status:1,
-            data:admin,
-            msg:"logged out",
-            
+            data:'',
+            message:"logged out"
         })
     }
     catch(e){
-        res.status(500).send({
-            status:0,
-            data:"",
-            msg:"err in data",
-            token:''
+        res.status(200).send({
+            status: 0,
+            data: e,
+            message: "Unauthorized user"
         })
     }
 })
 
-//-------------------logout from all---------------------------------
-router.post('/adminLogoutAll',authAdmin, async(req,res)=>{
+//-----------logOutAll--------------------------------------
+router.post('/adminLogoutAll', authAdmin, async(req, res)=>{
     try{
-        const _id= req.data._id
-        const admin = await Admin.findOne(_id);
-        let check= admin.removeAllToken(req.token)
-        if(!check){throw new Error('')}
-        res.send({
+        req.data.tokens = []
+        await req.data.save()
+        res.status(200).send({
             status:1,
-            data:admin,
-            msg:"logged out from all",
-            
+            data:'',
+            message:"logged out"
         })
     }
     catch(e){
-        res.status(500).send({
+        res.status(200).send({
+            status: 0,
+            data: e,
+            message: "Unauthorized user"
+        })
+    }
+})
+
+//-----------islogged--------------------------------------
+router.get('/isLogged', async(req, res)=>{
+    try{
+        const token = req.header("Auth")     
+        if(!token) throw new Error()
+        res.status(200).send({
+            status:1,
+            data:true,
+            message:"logged"
+        })
+    }
+    catch(e){
+        res.status(200).send({
             status:0,
-            data:"",
-            msg:"err in data",
-            token:''
+            data:false,
+            msg:"not logged"
         })
     }
 })

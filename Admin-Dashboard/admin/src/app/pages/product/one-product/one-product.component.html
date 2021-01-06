@@ -1,0 +1,21 @@
+<section class="container p-5 d-flex justify-content-center">
+
+<div class="card" style="width: 18rem;">
+  <img class="img-fluid" src="http://localhost:3000/{{productData.image.replace('images/','')}}"  class="card-img-top" alt="productImg">
+  <div class="card-body">
+    <h5 class="card-title">Name: {{productData.name}}</h5>
+  </div>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item">Category: {{productData.category}}</li>
+    <li class="list-group-item">Price: {{productData.price}}</li>
+    <li class="list-group-item">Quantity: {{productData.quantity}}</li>
+    <li class="list-group-item">
+      <button class="btn btn-danger" (click)="delete(productData._id)">Delete</button>
+      <button class="btn btn-success mx-2" routerLink="edit">Edit</button>
+    </li>
+  </ul>
+  <div class="card-body text-center">
+    <a routerLink="img" class="card-link">Upload Another Image</a>
+  </div>
+</div>
+</section>

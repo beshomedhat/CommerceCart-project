@@ -1,0 +1,70 @@
+<div class="sidebar-container">
+  <div class="sidebar-logo">
+    {{loged? adminData.name: "Admin Dashboard"}}
+  </div>
+  <ul class="sidebar-navigation">
+    <li class="header">Navigation</li>
+    <li>
+      <a routerLink="">
+        <i class="fa fa-home" aria-hidden="true"></i> Homepage
+      </a>
+    </li>
+    <li>
+      <a routerLink="">
+        <i class="fa fa-tachometer-alt" aria-hidden="true"></i> Dashboard
+      </a>
+    </li>
+    <div *ngIf="loged">
+    <li class="header">Product Menu</li>
+    <li>
+      <a routerLink="allproducts">
+        <i class="fa fa-sitemap"></i> allproducts
+      </a>
+    </li>
+    <li>
+      <a routerLink="addproduct">
+        <i class="fa fa-plus-square"></i> addproduct
+      </a>
+    </li>
+  </div>
+  <div *ngIf="loged">
+    <li class="header">Order Menu</li>
+    <li>
+      <a routerLink="incomingOrders">
+        <i class="fa fa-cart-arrow-down"></i> Incoming Orders
+      </a>
+    </li>
+    <li>
+      <a routerLink="acceptedOrders">
+        <i class="fa fa-vote-yea"></i> Accepted Orders
+      </a>
+    </li>
+  </div>
+    <div *ngIf="!loged">
+    <li class="header">Auth Menu</li>
+    <li>
+      <a routerLink="login">
+        <i class="fa fa-sign-in-alt"></i> Login
+      </a>
+    </li>
+    <li>
+      <a routerLink="register">
+        <i class="fa fa-registered"></i> register
+      </a>
+    </li>
+  </div>
+    <div *ngIf="loged">
+    <li class="header">Admin Menu</li>
+    <li>
+      <a routerLink="profile">
+        <i class="fa fa-user-circle"></i> Profile
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()">
+        <i class="fa fa-power-off"></i> Logout
+      </a>
+    </li>
+  </div>
+  </ul>
+</div>

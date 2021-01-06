@@ -1,0 +1,28 @@
+<section class="container p-5">
+  <form class="p-5 border" #productForm="ngForm" (ngSubmit)="edit()">
+
+    <div class="mb-3">
+      <label class="form-label">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)] = "productData.name">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">quantity:</label>
+      <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)] = "productData.quantity">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">category:</label>
+      <select class="form-select" id="category" name="category" [(ngModel)] = "productData.category">
+        <option *ngFor="let cat of productCat" value="{{cat}}">{{cat}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">price:</label>
+      <input type="number" class="form-control" id="price" name="price" [(ngModel)] = "productData.price">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</section>

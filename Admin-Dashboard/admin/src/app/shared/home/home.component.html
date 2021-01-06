@@ -1,0 +1,35 @@
+<section *ngIf="!loged" class="container p-5">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active text-success fw-bolder"><i class="fa mx-2 fa-home"></i>Admin</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Welcome</h5>
+      <p class="card-text">If you have an account go <span class="text-success">Login</span> if not <span class="text-danger">Register</span>.</p>
+      <a routerLink="login" class="btn btn-success">Go login</a>
+      <a routerLink="register" class=" mx-3 btn btn-danger">Register</a>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="loged" class="container p-5">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active text-success fw-bolder"><i class="fa mx-2 fa-home"></i>{{adminData.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Welcome</h5>
+      <a routerLink="profile" class="btn btn-success">Profile</a>
+      <button (click)="logout()" class="mx-3 btn btn-warning">Logout</button>
+      <button (click)="logoutAll()" class="btn btn-danger">Logout All</button>
+    </div>
+  </div>
+</section>

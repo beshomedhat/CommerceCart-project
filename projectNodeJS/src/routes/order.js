@@ -50,6 +50,28 @@ router.get('/allOrders',authAdmin,async (req,res)=>{
 
 })
 
+//-------------- get all orders by category ------------------------
+router.post('/allOrdersCat',authAdmin,async (req,res)=>{
+    const status = req.body.status;
+    try{
+        const data = await Order.find({ "status": status })
+        res.status(200).send({
+            status:1,
+            length:data.length,
+            data: data,
+            msg:"data found"
+        })
+    }
+    catch(e){
+        res.status(200).send({
+            status:0,
+            data: e,
+            msg:"error data"
+        })
+
+    }
+
+})
 
 //-------------- edit order status by admin ------------------------
 router.patch('/editOrder/:id',authAdmin, async(req,res)=>{
@@ -94,7 +116,7 @@ router.patch('/editOrder/:id',authAdmin, async(req,res)=>{
 })
 
 //-------------- delete order by admin ------------------------
-router.delete('/deleteOrder',authAdmin, async(req,res)=>{
+router.delete('/deleteOrder/:id',authAdmin, async(req,res)=>{
     const _id= req.params.id
     try{
         const order = await Order.findByIdAndDelete(_id)
@@ -151,7 +173,7 @@ router.get('/order/:id',auth,async (req,res)=>{
 })
 
 //-------------- get one order by admin ------------------------
-router.get('/orderAdmin/:id',auth,async (req,res)=>{
+router.get('/orderAdmin/:id',authAdmin,async (req,res)=>{
 
     try{
         const _id = req.params.id

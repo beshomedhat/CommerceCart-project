@@ -8,7 +8,6 @@ const productSchema = new mongoose.Schema({
     name:{
         type:String,
         required: true,
-        unique: true,
         trim: true,
         minLenrth:10,
         maxLenrth:50,
@@ -33,6 +32,10 @@ const productSchema = new mongoose.Schema({
         validate(val){
             if(!validator.isAlphanumeric(val,'en-US')) throw new Error('invalid cat')
         }
+    },
+    image:{
+        type:String,
+        default:"images/default.svg"
     }
 })
 productSchema.virtual('Order',{

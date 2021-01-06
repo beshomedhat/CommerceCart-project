@@ -5,7 +5,7 @@ const authAdmin = require('../middleware/adminAuthor')
 const router = new express.Router()
 
 //-------------- register Customer ------------------------
-router.post('/register',async (req,res)=>{
+router.post('/custRegister',async (req,res)=>{
 
     try{
         const data = new Customer(req.body)
@@ -54,7 +54,7 @@ router.get('/allCustomer',authAdmin,async (req,res)=>{
 
 
 //-------------- edit Customer ------------------------
-router.patch('/editInfo',auth, async(req,res)=>{
+router.patch('/custEditInfo',auth, async(req,res)=>{
     
     const _id= req.data._id
     const updates = req.body
@@ -96,7 +96,7 @@ router.patch('/editInfo',auth, async(req,res)=>{
 })
 
 //-------------- delete Customer ------------------------
-router.delete('/deleteAccount',auth, async(req,res)=>{
+router.delete('/custDeleteAccount',auth, async(req,res)=>{
     const _id= req.data._id
     try{
         const customer = await Customer.findByIdAndDelete(_id)
@@ -123,7 +123,7 @@ router.delete('/deleteAccount',auth, async(req,res)=>{
 })
 
 //-------------------login---------------------------------
-router.post('/login', async(req,res)=>{
+router.post('/custLogin', async(req,res)=>{
     try{
         const customer = await Customer.findByCredentials(req.body.email, req.body.pass)
         const token = await customer.generateToken()
@@ -145,7 +145,7 @@ router.post('/login', async(req,res)=>{
 })
 
 //-------------------profile---------------------------------
-router.get('/profile', auth,async(req,res)=>{
+router.get('/custProfile', auth,async(req,res)=>{
     try{
         res.send({
             status:1,
@@ -164,7 +164,7 @@ router.get('/profile', auth,async(req,res)=>{
 })
 
 //-------------------logout---------------------------------
-router.post('/logout',auth, async(req,res)=>{
+router.post('/custLogout',auth, async(req,res)=>{
     try{
         const _id= req.data._id
         const customer = await Customer.findOne(_id);
@@ -188,7 +188,7 @@ router.post('/logout',auth, async(req,res)=>{
 })
 
 //-------------------logout from all---------------------------------
-router.post('/logoutAll',auth, async(req,res)=>{
+router.post('/custLogoutAll',auth, async(req,res)=>{
     try{
         const _id= req.data._id
         const customer = await Customer.findOne(_id);
@@ -207,6 +207,26 @@ router.post('/logoutAll',auth, async(req,res)=>{
             data:"",
             msg:"err in data",
             token:''
+        })
+    }
+})
+
+//-----------islogged--------------------------------------
+router.get('/custIsLogged', async(req, res)=>{
+    try{
+        const token = req.header("Auth")     
+        if(!token) throw new Error()
+        res.status(200).send({
+            status:1,
+            data:true,
+            message:"logged"
+        })
+    }
+    catch(e){
+        res.status(200).send({
+            status:0,
+            data:false,
+            msg:"not logged"
         })
     }
 })
