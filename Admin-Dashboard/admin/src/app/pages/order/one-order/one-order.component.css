@@ -1,0 +1,6 @@
+.getProduct {
+  cursor: pointer;
+}
+.getProduct:hover {
+  background-color: whitesmoke;
+}

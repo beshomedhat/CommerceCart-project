@@ -1,1 +1,28 @@
-<p>one-order works!</p>
+<section class="container p-5 d-flex justify-content-center">
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">CustomerId: {{orderData.customerId}}</h5>
+    </div>
+    <ul class="list-group list-group-flush text-center">
+      <li class="list-group-item"><span class="text-primary">Date:</span> {{orderData.date | date:'medium'}}</li>
+      <li class="list-group-item"><span class="text-primary">Status:</span> {{orderData.status}}</li>
+      <div *ngFor="let product of orderData.productIds">
+        <li routerLink="../../product/{{product.productId}}" class="list-group-item getProduct" >
+          <span class="text-primary">productId:</span>
+           {{product.productId}}
+        </li>
+        <li class="list-group-item"><span class="text-primary">pQuantity:</span> {{product.pQuantity}}</li>
+      </div>
+
+      <li class="list-group-item"><span class="text-primary">Total:</span> {{orderData.total}} EGP</li>
+      <li class="list-group-item">
+        <button class="btn btn-danger" (click)="delete(orderData._id)">Delete</button>
+        <button class="btn btn-success mx-2" (click)="acceptOrder(orderData._id)"><i class="fa fa-check-circle"></i></button>
+        <button class="btn btn-danger" (click)="rejectOrder(orderData._id)"><i class="fa fa-times-circle"></i></button>
+      </li>
+    </ul>
+    <div class="card-body text-center">
+    </div>
+  </div>
+  </section>

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: Big_Shoulders_Display;
+  src: url(assets/fonts/Big_Shoulders_Display/BigShouldersDisplay-Regular.ttf)
+    format("opentype");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: Big_Shoulders_Display !important;
+}
+
+h1 {
+  font-size: 50px !important;
+}
+
+h2 {
+  font-size: 40px !important;
+}
+
+h3 {
+  font-size: 25px !important;
+}

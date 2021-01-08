@@ -1,0 +1,156 @@
+<!-------------------------Header----------------------------------->
+<section class="container p-5">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active homeHeader">
+      <img src="../../../assets/img/undraw_empty_cart_co35.svg" class="d-block w-100 img-fluid" alt="...">
+    </div>
+    <div class="carousel-item homeHeader">
+      <img src="../../../assets/img/undraw_shopping_app_flsj.svg" class="d-block w-100 img-fluid" alt="...">
+    </div>
+    <div class="carousel-item homeHeader">
+      <img src="../../../assets/img/undraw_order_confirmed_aaw7.svg" class="d-block w-100 img-fluid" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>
+</section>
+<!-------------------------HOW WORK----------------------------------->
+<section>
+<div class="howWork px-5 pt-5">
+  <div class="text-center">
+      <h1>HOW COMMERCE<span style="color: #00BFA6;">CART</span> HELP YOU</h1>
+      <span>How it works</span>
+  </div>
+  <div class="p-5">
+      <div class="row  justify-content-around">
+          <div class="col-md-4 p-3 text-center">
+              <div class="howWorkSec p-3">
+                  <i class="p-5  howWorkIco far fa-2x fa-hand-pointer"></i>
+                  <div class="mt-4 ">
+                      <h2>Select what you want</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4 p-3 text-center">
+              <div class="howWorkSec p-3">
+                  <i class="p-5  howWorkIco fas fa-2x fa-clipboard-check"></i>
+                  <div class="mt-4 ">
+                      <h2>Make an order</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4 p-3 text-center">
+              <div class="howWorkSec p-3">
+                  <i class="p-5  howWorkIco fas fa-2x fa-handshake"></i>
+                  <div class="mt-4 ">
+                      <h2>Get it!</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+<!-- Electronic Product -->
+<section class="container p-5 text-center">
+  <h2>Electronic</h2>
+  <div class="line1"></div>
+  <div class="line2"></div>
+  <div class="line1"></div>
+  <div class="row justify-content-center p-3">
+    <!-- one card -->
+    <div *ngFor="let product of productElecData"  class="col-md-6 col-lg-4 p-2">
+        <div class="card-data p-5 w-100 position-relative rounded">
+            <img class="img-fluid rounded" src="http://localhost:3000/{{product.image.replace('images/','')}}" />
+            <div class="card-layer d-flex align-items-center justify-content-center">
+              <div class="card-info text-white text-center rounded">
+                <h2>{{product.name}}</h2>
+                <p>{{product.category}}</p>
+                <button class="btn btn-primary">Open</button>
+              </div>
+            </div>
+            <div class="card-contant text-center rounded">
+              <h3>{{product.name}}</h3>
+              <h4>{{product.price}} EGP</h4>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------- -->
+  </div>
+  <div>
+    <button class="btn btn-primary">More Electronic</button>
+  </div>
+</section>
+<!-- Accessories Product -->
+<section class="whiteSmokeBG container p-5 text-center">
+  <h2>Accessories</h2>
+  <div class="line1"></div>
+  <div class="line2"></div>
+  <div class="line1"></div>
+  <div class="row justify-content-center p-3">
+    <!-- one card -->
+    <div *ngFor="let product of productAccessoriesData"  class="col-md-6 col-lg-4 p-2">
+        <div class="card-data p-5 w-100 position-relative rounded">
+            <img class="img-fluid rounded" src="http://localhost:3000/{{product.image.replace('images/','')}}" />
+            <div class="card-layer d-flex align-items-center justify-content-center">
+              <div class="card-info text-white text-center rounded">
+                <h2>{{product.name}}</h2>
+                <p>{{product.category}}</p>
+                <button class="btn btn-primary">Open</button>
+              </div>
+            </div>
+            <div class="card-contant text-center rounded">
+              <h3>{{product.name}}</h3>
+              <h4>{{product.price}} EGP</h4>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------- -->
+  </div>
+  <div>
+    <button class="btn btn-primary">More Accessories</button>
+  </div>
+</section>
+<!-- Kitchen Product -->
+<section class="container p-5 text-center">
+  <h2>Kitchen</h2>
+  <div class="line1"></div>
+  <div class="line2"></div>
+  <div class="line1"></div>
+  <div class="row justify-content-center p-3">
+    <!-- one card -->
+    <div *ngFor="let product of productKitchenData"  class="col-md-6 col-lg-4 p-2">
+        <div class="card-data p-5 w-100 position-relative rounded">
+            <img class="img-fluid rounded" src="http://localhost:3000/{{product.image.replace('images/','')}}" />
+            <div class="card-layer d-flex align-items-center justify-content-center">
+              <div class="card-info text-white text-center rounded">
+                <h2>{{product.name}}</h2>
+                <p>{{product.category}}</p>
+                <button class="btn btn-primary">Open</button>
+              </div>
+            </div>
+            <div class="card-contant text-center rounded">
+              <h3>{{product.name}}</h3>
+              <h4>{{product.price}} EGP</h4>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------- -->
+  </div>
+  <div>
+    <button class="btn btn-primary">More Accessories</button>
+  </div>
+</section>

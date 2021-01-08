@@ -18,7 +18,7 @@ router.post('/registerAdmin',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data",
@@ -41,7 +41,7 @@ router.get('/allAdmins',authAdmin,async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -73,7 +73,7 @@ router.patch('/editAdminInfo',authAdmin, async(req,res)=>{
             runValidators:true
         })
         if(!admin){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data:"",
                 msg:"admin not found"
@@ -86,7 +86,7 @@ router.patch('/editAdminInfo',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             statue: 0,
             data:"",
             msg:"error edit data"
@@ -100,7 +100,7 @@ router.delete('/deleteAdminAccount',authAdmin, async(req,res)=>{
     try{
         const admin = await Admin.findByIdAndDelete(_id)
         if(!admin){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data:"",
                 msg:"admin not found"
@@ -113,7 +113,7 @@ router.delete('/deleteAdminAccount',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             statue: 0,
             data:'',
             msg:"error delete data"
@@ -134,7 +134,7 @@ router.post('/adminLogin', async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data:"",
             msg:"err in data",
@@ -154,7 +154,7 @@ router.get('/adminProfile', authAdmin,async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data:"",
             msg:"err in data"
@@ -176,7 +176,7 @@ router.post('/adminLogout', authAdmin, async(req, res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status: 0,
             data: e,
             message: "Unauthorized user"
@@ -196,7 +196,7 @@ router.post('/adminLogoutAll', authAdmin, async(req, res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status: 0,
             data: e,
             message: "Unauthorized user"
@@ -216,7 +216,7 @@ router.get('/isLogged', async(req, res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data:false,
             msg:"not logged"

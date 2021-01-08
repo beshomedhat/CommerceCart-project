@@ -18,7 +18,7 @@ router.post('/addProduct',authAdmin,async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -40,7 +40,7 @@ router.get('/allProducts',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -69,7 +69,7 @@ router.patch('/product/:id',authAdmin, async(req,res)=>{
             runValidators:true
         })
         if(!product){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data:"",
                 msg:"product not found"
@@ -82,7 +82,7 @@ router.patch('/product/:id',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             statue: 0,
             data:'',
             msg:"error edit data"
@@ -109,7 +109,7 @@ router.delete('/product/:id',authAdmin, async(req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             statue: 0,
             data:'',
             msg:"error delete data"
@@ -124,7 +124,7 @@ router.get('/product/:id',async (req,res)=>{
         const _id = req.params.id
         const data = await Product.findById(_id)
         if(!data){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data: data,
                 msg:"not found"
@@ -137,7 +137,7 @@ router.get('/product/:id',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -148,7 +148,7 @@ router.get('/product/:id',async (req,res)=>{
 })
 
 //-------------- get all products by category ------------------------
-router.get('/allProductCat',async (req,res)=>{
+router.post('/allProductCat',async (req,res)=>{
     const cat = req.body.category;
     try{
         const data = await Product.find({ "category": cat })
@@ -160,7 +160,7 @@ router.get('/allProductCat',async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -189,7 +189,7 @@ router.post('/product/:id/uploadImg',authAdmin, upload.single('upload'), async(r
         const _id = req.params.id
         const data = await Product.findById(_id)
         if(!data){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data: data,
                 msg:"not found"
@@ -204,7 +204,7 @@ router.post('/product/:id/uploadImg',authAdmin, upload.single('upload'), async(r
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"

@@ -1,0 +1,9 @@
+.eFooter {
+  background-color: rgba(1, 1, 1, 0.1);
+  font-size: larger;
+  font-weight: bolder;
+}
+.eFooter img {
+  width: 4em;
+  height: 4em;
+}

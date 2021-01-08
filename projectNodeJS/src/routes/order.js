@@ -63,7 +63,7 @@ router.post('/allOrdersCat',authAdmin,async (req,res)=>{
         })
     }
     catch(e){
-        res.status(200).send({
+        res.status(500).send({
             status:0,
             data: e,
             msg:"error data"
@@ -94,7 +94,7 @@ router.patch('/editOrder/:id',authAdmin, async(req,res)=>{
             runValidators:true
         })
         if(!order){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data:"",
                 msg:"Order not found"
@@ -121,7 +121,7 @@ router.delete('/deleteOrder/:id',authAdmin, async(req,res)=>{
     try{
         const order = await Order.findByIdAndDelete(_id)
         if(!order){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data:"",
                 msg:"Order not found"
@@ -149,7 +149,7 @@ router.get('/order/:id',auth,async (req,res)=>{
         const _id = req.params.id
         const data = await Order.findById(_id)
         if(!data){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data: data,
                 msg:"not found"
@@ -179,7 +179,7 @@ router.get('/orderAdmin/:id',authAdmin,async (req,res)=>{
         const _id = req.params.id
         const data = await Order.findById(_id)
         if(!data){
-            res.status(200).send({
+            res.status(400).send({
                 status:2,
                 data: data,
                 msg:"not found"
