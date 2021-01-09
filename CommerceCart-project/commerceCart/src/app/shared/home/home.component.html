@@ -64,7 +64,7 @@
   </div>
 </div>
 </section>
-<!-- Electronic Product -->
+<!------------------ Electronic Product ---------------->
 <section class="container p-5 text-center">
   <h2>Electronic</h2>
   <div class="line1"></div>
@@ -79,7 +79,7 @@
               <div class="card-info text-white text-center rounded">
                 <h2>{{product.name}}</h2>
                 <p>{{product.category}}</p>
-                <button class="btn btn-primary">Open</button>
+                <button routerLink="product/{{product._id}}" class="btn btn-primary">Open</button>
               </div>
             </div>
             <div class="card-contant text-center rounded">
@@ -91,10 +91,10 @@
     <!-- --------------------------- -->
   </div>
   <div>
-    <button class="btn btn-primary">More Electronic</button>
+    <button routerLink="products/electronic" class="btn btn-primary">More Electronic</button>
   </div>
 </section>
-<!-- Accessories Product -->
+<!---------------- Accessories Product --------------------->
 <section class="whiteSmokeBG container p-5 text-center">
   <h2>Accessories</h2>
   <div class="line1"></div>
@@ -109,7 +109,7 @@
               <div class="card-info text-white text-center rounded">
                 <h2>{{product.name}}</h2>
                 <p>{{product.category}}</p>
-                <button class="btn btn-primary">Open</button>
+                <button routerLink="product/{{product._id}}" class="btn btn-primary">Open</button>
               </div>
             </div>
             <div class="card-contant text-center rounded">
@@ -121,10 +121,10 @@
     <!-- --------------------------- -->
   </div>
   <div>
-    <button class="btn btn-primary">More Accessories</button>
+    <button routerLink="products/accessories" class="btn btn-primary">More Accessories</button>
   </div>
 </section>
-<!-- Kitchen Product -->
+<!--------------- Kitchen Product ------------------>
 <section class="container p-5 text-center">
   <h2>Kitchen</h2>
   <div class="line1"></div>
@@ -139,7 +139,7 @@
               <div class="card-info text-white text-center rounded">
                 <h2>{{product.name}}</h2>
                 <p>{{product.category}}</p>
-                <button class="btn btn-primary">Open</button>
+                <button routerLink="product/{{product._id}}" class="btn btn-primary">Open</button>
               </div>
             </div>
             <div class="card-contant text-center rounded">
@@ -151,6 +151,27 @@
     <!-- --------------------------- -->
   </div>
   <div>
-    <button class="btn btn-primary">More Accessories</button>
+    <button routerLink="products/kitchen" class="btn btn-primary">More Kitchen</button>
   </div>
 </section>
+<!-------------------------YOU SHOULD KNOW----------------------------------->
+<section>
+  <div class="YSK">
+    <div class="container  m-auto">
+        <div class="row YSKsec m-5 ">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center p-5">
+                    <img src="../../../assets/img/undraw_new_ideas_jdea.svg" />
+                </div>
+            </div>
+            <div class="col-md-8 d-flex align-items-center">
+                <div>
+                    <h2>You should know</h2>
+                    <h3>If you didn't find what you want <span>select your item's category</span> and search there</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+<!--------------------------------------------------------------------------->

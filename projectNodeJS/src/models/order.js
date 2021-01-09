@@ -26,6 +26,12 @@ const orderSchema = new mongoose.Schema({
         pQuantity:{
             type:Number,
             default:1
+        },
+        pImage:{
+            type:String,
+        },
+        pPrice:{
+            type:Number
         }
     }],
     total:{

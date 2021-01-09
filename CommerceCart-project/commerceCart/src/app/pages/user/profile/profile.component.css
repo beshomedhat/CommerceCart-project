@@ -1,0 +1,16 @@
+/*  */
+.line1 {
+  height: 1px;
+  background-color: #00bfa6;
+  width: 7%;
+  margin: 5px auto;
+}
+.line2 {
+  height: 1px;
+  background-color: #00bfa6;
+  width: 15%;
+  margin: auto;
+}
+.ordersTable {
+  background-color: whitesmoke;
+}

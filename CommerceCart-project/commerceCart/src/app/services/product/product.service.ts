@@ -14,4 +14,7 @@ export class ProductService {
   getAllProductByCat(obj:any):Observable<any>{
     return this._http.post(`${this.defaultURL}allProductCat`,obj)
   }
+  getOnProduct(id):Observable<any>{
+    return this._http.get(`${this.defaultURL}product/${id}`)
+  }
 }

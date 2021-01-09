@@ -1,1 +1,53 @@
-<p>profile works!</p>
+
+<section class="p-5 mt-5 container">
+  <h2 class="text-center my-3">Profile</h2>
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line1"></div>
+  <div class="card mt-2">
+    <div class="card-header">
+      Name: {{ userData.name | uppercase }}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Address:</p>
+        <footer class="blockquote-footer">{{userData.address}} </footer>
+        <p>Phone:</p>
+        <footer class="blockquote-footer">{{userData.phone}} </footer>
+        <p>Email:</p>
+        <footer class="blockquote-footer">{{userData.email}} </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="container p-5">
+  <h2 class="text-center my-3">Orders</h2>
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line1"></div>
+  <table class=" table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="oneProduct" *ngFor="let order of orders; let i=index" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{order.date | date:'medium'}}</td>
+        <td>{{order.status}}</td>
+        <td>{{order.total}}</td>
+        <td>
+          <button class="btn btn-primary mx-2" routerLink="../order/{{order._id}}"><i class="fa fa-eye"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+

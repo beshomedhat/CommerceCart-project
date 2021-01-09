@@ -66,3 +66,19 @@
 .whiteSmokeBG {
   background-color: whitesmoke;
 }
+/* -------------------- */
+/* -------------------------------YOU SHOULD KNOW------------------------------------------------------ */
+.YSK img {
+  height: 70%;
+  width: 70%;
+}
+.YSKsec {
+  box-shadow: 5px 10px 18px #888888;
+}
+.YSKsec p {
+  font-size: large;
+}
+.YSKsec span {
+  color: #00bfa6;
+  font-weight: bolder;
+}

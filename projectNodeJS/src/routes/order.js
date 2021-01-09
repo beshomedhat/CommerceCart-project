@@ -202,6 +202,28 @@ router.get('/orderAdmin/:id',authAdmin,async (req,res)=>{
 
 })
 
+//-------------- get all orders by customer------------------------
+router.get('/allCustOrders',auth,async (req,res)=>{
 
+    const _id = req.data._id
+    try{
+        const data = await Order.find({ "customerId": _id })
+        res.status(200).send({
+            status:1,
+            length:data.length,
+            data: data,
+            msg:"data found"
+        })
+    }
+    catch(e){
+        res.status(500).send({
+            status:0,
+            data: e,
+            msg:"error data"
+        })
+
+    }
+
+})
 
 module.exports = router

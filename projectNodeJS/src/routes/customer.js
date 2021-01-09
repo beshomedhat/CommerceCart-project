@@ -163,53 +163,50 @@ router.get('/custProfile', auth,async(req,res)=>{
     }
 })
 
-//-------------------logout---------------------------------
-router.post('/custLogout',auth, async(req,res)=>{
+// 
+//-----------logOut--------------------------------------
+router.post('/custLogout', auth, async(req, res)=>{
     try{
-        const _id= req.data._id
-        const customer = await Customer.findOne(_id);
-        let check= customer.removeToken(req.token)
-        if(!check){throw new Error('')}
-        res.send({
+        req.data.tokens = req.data.tokens.filter( token =>{
+            return token.token != req.token
+        })
+        await req.data.save()
+        res.status(200).send({
             status:1,
-            data:customer,
-            msg:"logged out",
-            
+            data:'',
+            message:"logged out"
         })
     }
     catch(e){
         res.status(500).send({
-            status:0,
-            data:"",
-            msg:"err in data",
-            token:''
+            status: 0,
+            data: e,
+            message: "Unauthorized user"
         })
     }
 })
 
-//-------------------logout from all---------------------------------
-router.post('/custLogoutAll',auth, async(req,res)=>{
+//-----------logOutAll--------------------------------------
+router.post('/custLogoutAll', auth, async(req, res)=>{
     try{
-        const _id= req.data._id
-        const customer = await Customer.findOne(_id);
-        let check= customer.removeAllToken(req.token)
-        if(!check){throw new Error('')}
-        res.send({
+        req.data.tokens = []
+        await req.data.save()
+        res.status(200).send({
             status:1,
-            data:customer,
-            msg:"logged out from all",
-            
+            data:'',
+            message:"logged out"
         })
     }
     catch(e){
         res.status(500).send({
-            status:0,
-            data:"",
-            msg:"err in data",
-            token:''
+            status: 0,
+            data: e,
+            message: "Unauthorized user"
         })
     }
 })
+
+// 
 
 //-----------islogged--------------------------------------
 router.get('/custIsLogged', async(req, res)=>{

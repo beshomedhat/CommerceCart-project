@@ -1,1 +1,39 @@
-<p>register works!</p>
+<section class="container p-5 mt-5 loginPage row align-items-center justify-content-center">
+  <div class="col-md-6">
+    <img src="../../../../assets/img/undraw_Login_re_4vu2.svg" class="img-fluid">
+  </div>
+  <div class="p-4 col-md-6">
+    <!-- userData={
+      name:"",
+      address:"",
+      phone:"",
+    //  email:"",
+    //  pass:""
+    } -->
+    <form  #loginForm="ngForm" (ngSubmit)="register()">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name:</label>
+        <input type="email" class="form-control" id="name" name="name" [(ngModel)] = "userData.name">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Address:</label>
+        <input type="email" class="form-control" id="address" name="address" [(ngModel)] = "userData.address">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Phone:</label>
+        <input type="email" class="form-control" id="phone" name="phone" [(ngModel)] = "userData.phone">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address:</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)] = "userData.email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="password" name="pass"  [(ngModel)] = "userData.pass">
+      </div>
+      <button class="btn btn-primary">Submit</button>
+    </form>
+    <h4 class="text-center mt-3">I have account, <a routerLink="../login">Login</a></h4>
+  </div>
+</section>

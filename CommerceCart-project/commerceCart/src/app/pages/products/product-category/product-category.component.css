@@ -1,0 +1,46 @@
+/*  */
+.line1 {
+  height: 1px;
+  background-color: #00bfa6;
+  width: 7%;
+  margin: 5px auto;
+}
+.line2 {
+  height: 1px;
+  background-color: #00bfa6;
+  width: 15%;
+  margin: auto;
+}
+/* -------------------------card-member---------------------------------- */
+.card-data {
+  overflow: hidden;
+  background-color: rgba(0, 191, 166, 0.2);
+}
+.card-data img {
+  width: 15em;
+  height: 15em;
+}
+.card-layer {
+  position: absolute;
+  top: -100%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: top 1s;
+}
+.card-data:hover .card-layer {
+  top: 5%;
+}
+.card-contant {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  left: 5%;
+  background-color: whitesmoke;
+  transition: bottom 1s;
+}
+.card-data:hover .card-contant {
+  bottom: -100%;
+}
+/* ----------------------------------------------------------- */

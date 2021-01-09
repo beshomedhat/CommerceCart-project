@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Order = require('./order')
+const Cart = require('./cart')
 
 const productSchema = new mongoose.Schema({
     name:{
@@ -40,6 +41,9 @@ const productSchema = new mongoose.Schema({
 })
 productSchema.virtual('Order',{
     ref:'Order', localField:'_id', foreignField:'productId'
+})
+productSchema.virtual('Cart',{
+    ref:'Cart', localField:'_id', foreignField:'productId'
 })
 
 

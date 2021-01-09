@@ -1,5 +1,5 @@
 <section class="container mt-5 p-5">
-  <h2 class="text-center mt-5">Cart <i class="text-success fa fa-shopping-cart"></i></h2>
+  <h2 class="text-center mt-5">Order</h2>
     <div class="line1"></div>
     <div class="line2"></div>
     <div class="line1"></div>
@@ -7,11 +7,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Category</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
-        <th scope="col">Total Price</th>
         <th scope="col">Actions</th>
         <th scope="col">Img</th>
       </tr>
@@ -19,23 +16,16 @@
     <tbody>
       <tr class="oneProduct" *ngFor="let product of cartData; let i=index" >
         <th scope="row">{{i+1}}</th>
-        <td>{{product.pName}}</td>
-        <td>{{product.pCategory}}</td>
         <td>{{product.pQuantity}}</td>
-        <td>{{product.priceForOne}}</td>
-        <td>{{product.totalPrice}}</td>
+        <td>{{product.pPrice}}</td>
         <td>
-          <button class="btn btn-danger" (click)="delete(product._id)"><i class="fa fa-trash-alt"></i></button>
-          <button class="mx-1 btn btn-primary" routerLink="../product/{{product.productId}}"><i class="fa fa-eye"></i></button>
+          <button class="mx-1 btn btn-primary" routerLink="../../product/{{product.productId}}"><i class="fa fa-eye"></i></button>
         </td>
         <td><img class="img-fluid productImg" src="http://localhost:3000/{{product.pImage.replace('images/','')}}" alt=""></td>
       </tr>
       <tr>
         <th scope="row">Total Price </th>
-        <td colspan="6" class="fw-bolder fs-4">{{totalPrice}} EGP</td>
-        <td>
-          <button class="btn btn-success" (click)="makeOrder()">Make order</button>
-        </td>
+        <td colspan="5" class="fw-bolder fs-4">{{totalPrice}} EGP</td>
       </tr>
     </tbody>
   </table>

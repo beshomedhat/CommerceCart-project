@@ -2,6 +2,7 @@ const validator = require('validator')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const Order = require('./order')
+const Cart = require('./cart')
 const jwt = require('jsonwebtoken')
 
 const CustSchema = new mongoose.Schema({
@@ -53,6 +54,10 @@ const CustSchema = new mongoose.Schema({
 
 CustSchema.virtual('Order',{
     ref:'Order', localField:'_id', foreignField:'customerId'
+})
+
+CustSchema.virtual('Cart',{
+    ref:'Cart', localField:'_id', foreignField:'customerId'
 })
 
 CustSchema.methods.toJSON=function(){

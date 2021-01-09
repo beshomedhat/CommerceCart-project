@@ -1,1 +1,26 @@
-<p>product works!</p>
+<section class="container p-5 mt-5">
+  <div *ngIf="!loged" class="alert alert-danger" role="alert">
+    you must login to make an order
+  </div>
+  <div class="container p-5 d-flex justify-content-center">
+
+    <div class="card" style="width: 18rem;">
+      <img class="img-fluid" src="http://localhost:3000/{{productData.image.replace('images/','')}}"  class="card-img-top" alt="productImg">
+      <div class="card-body">
+        <h5 class="card-title">Name: {{productData.name}}</h5>
+      </div>
+      <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item">Category: {{productData.category}}</li>
+        <li class="list-group-item">Price: {{productData.price}}</li>
+        <li class="list-group-item">Quantity: {{productData.quantity}}</li>
+        <li *ngIf="loged" class="list-group-item">
+          <form [formGroup]="cartForm" (ngSubmit)="getOrderData()">
+            <input type="text" formControlName="prodQuantity" [min]="1.00" [max]="productData.quantity"  pattern="^[0-9]*$">
+            <button type="submit" class="btn btn-success my-2" [disabled]="!cartForm.valid">Add to cart</button>
+          </form>
+
+        </li>
+      </ul>
+    </div>
+    </div>
+</section>

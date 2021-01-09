@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -19,6 +19,9 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { LoginComponent } from './shared/auth/login/login.component';
 import { RegisterComponent } from './shared/auth/register/register.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { CustomerService } from './services/customer/customer.service';
+import { CustomerInterceptor } from './interceptors/customer.interceptor';
+import { OrderComponent } from './pages/orders/order/order.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +45,17 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    CustomerService,
+    {
+     provide:HTTP_INTERCEPTORS,
+     useClass:CustomerInterceptor,
+     multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
