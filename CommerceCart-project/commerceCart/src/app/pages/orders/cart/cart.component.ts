@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -16,15 +17,16 @@ export class CartComponent implements OnInit {
     private _order:OrderService,
     private toastr: ToastrService,
     private router:Router,
+    @Inject(DOCUMENT) private _document: Document
   ) { }
   cartData=[{
     pCategory: "",
     pImage: "images/default.svg",
     pName: "----",
-    pQuantity: 1,
-    priceForOne: 1,
+    pQuantity: 0,
+    priceForOne: 0,
     productId: "1",
-    totalPrice: 1,
+    totalPrice: 0,
     _id: "1"
   }]
   totalPrice =0
@@ -52,6 +54,7 @@ export class CartComponent implements OnInit {
   }
 
   getTotalPrice(){
+    this.totalPrice =0
     for(let i=0; i<this.cartData.length; i++)
     {
       this.totalPrice += this.cartData[i].totalPrice
@@ -77,16 +80,19 @@ export class CartComponent implements OnInit {
     })
   }
   makeOrder(){
-    this.saveOrderData()
-    this._order.makeOrder(this.orderData).subscribe(data=>{
-      console.log(data)
-    },()=>{
-      this.toastr.error('Err msg', 'ERROR!');
-    },()=>{
-      this.toastr.success('your order uploaded', 'Success!');
-      this._cart.clearCart().subscribe()
-      this.router.navigateByUrl("")
-    })
+    if(this.totalPrice!=0){
+      this.saveOrderData()
+      this._order.makeOrder(this.orderData).subscribe(data=>{
+        console.log(data)
+      },()=>{
+        this.toastr.error('Err msg', 'ERROR!');
+      },()=>{
+        this.toastr.success('your order uploaded', 'Success!');
+        this._cart.clearCart().subscribe()
+        this.router.navigateByUrl("")
+      })
+    }
+    else this.toastr.warning('Your cart is empty', 'ERROR!');
   }
   ngOnInit(): void {
     this.getCartData()

@@ -12,9 +12,10 @@
       <ul class="list-group list-group-flush text-center">
         <li class="list-group-item">Category: {{productData.category}}</li>
         <li class="list-group-item">Price: {{productData.price}}</li>
-        <li class="list-group-item">Quantity: {{productData.quantity}}</li>
+        <!-- <li class="list-group-item">Quantity: {{productData.quantity}}</li> -->
         <li *ngIf="loged" class="list-group-item">
           <form [formGroup]="cartForm" (ngSubmit)="getOrderData()">
+            <label class="form-label" class="fw-bold">How many you want?</label>
             <input type="text" formControlName="prodQuantity" [min]="1.00" [max]="productData.quantity"  pattern="^[0-9]*$">
             <button type="submit" class="btn btn-success my-2" [disabled]="!cartForm.valid">Add to cart</button>
           </form>
